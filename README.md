@@ -73,6 +73,30 @@ $ npm start
 
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
+## 🤖 Interactive vs. non-interactive mode
+
+By default, release-it is interactive and allows you to confirm each task before execution:
+
+<img src="./assets/release-it.png?raw=true" height="148">
+
+On a Continuous Integration (CI) environment, or by using the `-n` option, this is fully automated. No prompts are shown and the configured tasks will be executed. This is demonstrated in the first animation above. An overview of the default tasks:
+
+Task | Option | Default | Prompt | Default
+:--|:--|:-:|:--|:-:
+Ready (confirm version) | N/A | N/A | - | `Y`
+Show staged files | N/A | N/A | `prompt.src.status` | `N`
+Git commit | `src.commit` | `true` | `prompt.src.commit` | `Y`
+Git push | `src.push` | `true` | `prompt.src.push` | `Y`
+Git tag | `src.tag` | `true` | `prompt.src.tag` | `Y`
+GitHub release | `github.release` | `false` | `prompt.src.release` | `Y`
+npm publish | `npm.publish` | `true` | `prompt.src.publish` | `Y`
+
+The left columns are default options in non-interactive (or CI) mode.
+
+The `prompt.*` options on the right in the table are used for the default answers in interactive mode. You can still change the answer to either `Y` or `N` as the questions show up (or cancel the process with `Ctrl-c`).
+
+Also, if e.g. `npm.publish` is `false`, the related prompt (`prompt.src.publish`) will not be shown (regardless of its default answer).
+
 
 ## Download
 
